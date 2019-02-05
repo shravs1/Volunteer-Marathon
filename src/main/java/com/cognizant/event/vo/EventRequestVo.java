@@ -1,17 +1,15 @@
-package com.cognizant.volunteer.vo;
+package com.cognizant.event.vo;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import com.cognizant.enumeration.ActionType;
 
-@Entity
-public class EventsVo {
+public class EventRequestVo {
 	
-	@Id
 	private Integer id;
 	private String name;
 	private String baseLocation;
 	private String description;
 	private String date;
+	private ActionType action;
 	
 	public Integer getId() {
 		return id;
@@ -43,6 +41,10 @@ public class EventsVo {
 	public void setDate(String date) {
 		this.date = date;
 	}
-	
-	
+	public ActionType getAction() {
+		return action;
+	}
+	public void setAction(ActionType action) {
+		this.action = action;
+	}
 }
