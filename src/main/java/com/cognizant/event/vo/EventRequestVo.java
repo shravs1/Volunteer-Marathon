@@ -44,7 +44,7 @@ public class EventRequestVo {
 	public ActionType getAction() {
 		return action;
 	}
-	public void setAction(ActionType action) {
-		this.action = action;
+	public void setAction(String action) {
+		this.action = ActionType.valueOf(action);
 	}
 }

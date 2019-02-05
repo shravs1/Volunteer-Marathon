@@ -1,19 +1,26 @@
 package com.cognizant.event.bo;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="Event")
 public class EventBo {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
+	@Column(name="Name")
 	private String name;
+	@Column(name="Location")
 	private String baseLocation;
+	@Column(name="Description")
 	private String description;
+	@Column(name="Event_Date")
 	private String date;
 	
 	

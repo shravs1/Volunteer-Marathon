@@ -16,5 +16,10 @@ public class ApplicationExecutionListener implements ServletContextListener {
 		ServletContextListener.super.contextInitialized(sce);
 		LOGGER.info("Leaving Context Initialized");
 	}
+	
+	@Override
+	public void contextDestroyed(ServletContextEvent sce) {
+		ServletContextListener.super.contextDestroyed(sce);
+	}
 
 }
