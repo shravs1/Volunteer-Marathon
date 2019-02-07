@@ -7,7 +7,7 @@ public enum StatusType {
 	SUCCESS,FAILURE;
 	
 	 public static StatusType getActionType(final String statusType){
-		  return Arrays.stream(values()).filter(value -> StatusType.valueOf(statusType).equals(statusType)).findFirst().orElse(null);
+		  return Arrays.stream(values()).filter(value -> value.toString().equals(statusType)).findFirst().orElse(null);
 	  }
 
 }
