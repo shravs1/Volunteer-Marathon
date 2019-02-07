@@ -9,11 +9,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.web.servlet.ServletComponentScan;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 @SpringBootApplication(scanBasePackages="com.cognizant")
 @ServletComponentScan
-@EnableJpaRepositories(basePackages="com.cognizant.event.repository")
+@EnableMongoRepositories(basePackages="com.cognizant")
 @EntityScan(basePackages="com.cognizant.event.bo")
 public class Application {
 	private static final Logger LOGGER = LogManager.getLogger(Application.class);

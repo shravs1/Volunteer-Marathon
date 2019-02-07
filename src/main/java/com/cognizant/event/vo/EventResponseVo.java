@@ -4,7 +4,7 @@ import com.cognizant.common.vo.StatusVo;
 import com.cognizant.enumeration.ActionType;
 
 public class EventResponseVo {
-	private Integer id;
+	private String id;
 	private String name;
 	private String baseLocation;
 	private String description;
@@ -18,7 +18,7 @@ public class EventResponseVo {
 		mapRequest(requestVo);
 	}
 	
-	public EventResponseVo(Integer id, String name, String baseLocation, String description, String date,StatusVo status) {
+	public EventResponseVo(String id, String name, String baseLocation, String description, String date,StatusVo status) {
 		this.id = id;
 		this.name = name;
 		this.baseLocation = baseLocation;
@@ -27,10 +27,10 @@ public class EventResponseVo {
 		this.status = status;
 	}
 	
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public String getName() {
@@ -74,7 +74,6 @@ public class EventResponseVo {
 	}
 
 	private void mapRequest(EventRequestVo requestVo) {
-		this.id = requestVo.getId();
 		this.name = requestVo.getName();
 		this.baseLocation = requestVo.getBaseLocation();
 		this.description = requestVo.getDescription();
