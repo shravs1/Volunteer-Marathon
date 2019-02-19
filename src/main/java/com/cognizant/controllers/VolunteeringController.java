@@ -1,9 +1,10 @@
 package com.cognizant.controllers;
 
+import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.MimeType;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,9 +21,9 @@ public class VolunteeringController {
 	EventService eventService;
 	 
 	@RequestMapping(consumes="application/json",path="/events")
-    public EventResponseVo events(@RequestBody EventRequestVo requestVo) {
+    public List<EventResponseVo> events(@RequestBody EventRequestVo requestVo) throws Exception {
 		LOGGER.debug("Called VolunteeringController.getEvents() methods");
-		EventResponseVo responseVo = null;
+		List<EventResponseVo> responseVo = null;
 		responseVo = eventService.event(requestVo);
 		LOGGER.debug("Leaving VolunteeringController.getEvents() methods");
         return responseVo;

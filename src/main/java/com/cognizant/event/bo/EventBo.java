@@ -37,12 +37,14 @@ public class EventBo {
 
 
 	public EventBo(Integer id, String name, String baseLocation, String description, String date) {
-		super();
 		this.id = id;
 		this.name = name;
 		this.baseLocation = baseLocation;
 		this.description = description;
 		this.date = date;
+	}
+	
+	public EventBo() {
 	}
 	public Integer getId() {
 		return id;
