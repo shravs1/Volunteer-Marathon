@@ -1,0 +1,11 @@
+.example-card {
+    max-width: 400px;
+    float: left;
+    margin-top: 5px;
+    margin-right: 25px;
+    margin-left: 25px;
+}
+
+.example-card:hover  {
+        box-shadow: 0 0px 5px 5px rgba(0,0,0,.2)
+}

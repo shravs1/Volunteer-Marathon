@@ -1,5 +1,5 @@
 <nav class = "navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Volunteering Marathon <sub>v0.1</sub></a>
+    <a class="navbar-brand" routerLink="/welcome">Volunteering Marathon <sub>v0.1</sub></a>
   <button mat-button [matMenuTriggerFor]="menu">Menu</button>
   <mat-menu #menu="matMenu">
       <button mat-menu-item>
@@ -15,5 +15,18 @@
           <span>Registered Events</span>
         </button>
   </mat-menu>
+  <div class="flex-spacer"></div>
+  <button mat-icon-button [matMenuTriggerFor]="code" float="right">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #code="matMenu">
+    <button mat-menu-item>
+      <mat-icon>account_circle</mat-icon>
+      <span>User</span>
+    </button>
+    <button mat-menu-item>
+      <span>Sign Out</span>
+    </button>
+    </mat-menu>
 </nav>
 <router-outlet></router-outlet>
