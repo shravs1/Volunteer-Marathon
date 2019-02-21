@@ -5,7 +5,7 @@ import { EventInformationComponent } from './event-information/event-information
 
 const routes: Routes = [
   { path: 'welcome', component: WelcomeComponent },
-  { path: 'eventinfo', component: EventInformationComponent },
+  { path: 'eventinfo/:id', component: EventInformationComponent },
   { path: '', redirectTo:'welcome', pathMatch:'full' },
   { path: '**', redirectTo:'welcome',pathMatch:'full' }
 ];
