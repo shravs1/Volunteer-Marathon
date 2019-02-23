@@ -266,24 +266,24 @@ public class EventBo {
 
 	public  void setEvent(EventBo event) {
 		try {
-		Method[] methods = event.getClass().getMethods();
-		for(Method method : methods){
-			if(isGetter(method)) {
-				Object obj = method.invoke(event);
-				if(ObjectValidator.isNotNull(obj)) {
-				Method setterMethod  = this.getClass().getMethod("set"+method.getName().substring(3,method.getName().length()),obj.getClass());
-				setterMethod.invoke(this, obj);
+			Method[] methods = event.getClass().getMethods();
+			for(Method method : methods){
+				if(isGetter(method)) {
+					Object obj = method.invoke(event);
+					if(ObjectValidator.isNotNull(obj)) {
+						Method setterMethod  = this.getClass().getMethod("set"+method.getName().substring(3,method.getName().length()),obj.getClass());
+						setterMethod.invoke(this, obj);
+					}
+
 				}
-				
 			}
-		}
 		}catch (SecurityException
-                | IllegalArgumentException 
-                | IllegalAccessException 
-                | InvocationTargetException 
-                | NoSuchMethodException e) {
-            e.printStackTrace();
-        }
+				| IllegalArgumentException 
+				| IllegalAccessException 
+				| InvocationTargetException 
+				| NoSuchMethodException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public static boolean isGetter(Method method){

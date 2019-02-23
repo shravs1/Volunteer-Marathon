@@ -8,6 +8,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.cognizant.common.vo.StatusVo;
 import com.cognizant.enumeration.ActionType;
@@ -26,6 +27,7 @@ public class EventServiceImpl implements EventService {
 	@Autowired
 	EventRepository repository;
 
+	@Transactional
 	public List<EventResponseVo> event(EventRequestVo requestVo) throws Exception {
 		List<EventResponseVo> response = new ArrayList<EventResponseVo>();
 		StatusVo status = null;
@@ -43,9 +45,12 @@ public class EventServiceImpl implements EventService {
 				status = new StatusVo(StatusType.SUCCESS, "Event "+requestVo.getAction().toString().toLowerCase()+" is successful");
 				responseVo.setId(eventBo.getId());
 			} catch (Exception e) {
+				if("No value present".equals(e.getMessage())) {
+					throw new Exception("No value found for the given id "+responseVo.getId()+" in the database to "+requestVo.getAction().toString().toLowerCase());
+				}
 				LOGGER.error("Exception Occured while "+requestVo.getAction().toString().toLowerCase()+"ing the event", e);
 				status = new StatusVo(StatusType.FAILURE, "Event "+requestVo.getAction().toString().toLowerCase()+" was not successful - Exception Occurred");
-				throw new Exception("Action Type Not Found");
+				throw new Exception("Exception Occured while "+requestVo.getAction().toString().toLowerCase()+"ing the event");
 			}
 			responseVo.setStatus(status);
 			response.add(responseVo);
