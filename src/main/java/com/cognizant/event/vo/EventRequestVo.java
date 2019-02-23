@@ -3,6 +3,7 @@ package com.cognizant.event.vo;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import com.cognizant.common.vo.UserVo;
 import com.cognizant.enumeration.ActionType;
 
 public class EventRequestVo {
@@ -22,6 +23,8 @@ public class EventRequestVo {
 	private String eventStatus;
 	private String pocIds;
 	private ActionType action;
+	private UserVo user;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -111,5 +114,11 @@ public class EventRequestVo {
 	}
 	public void setAction(ActionType action) {
 		this.action = action;
+	}
+	public UserVo getUser() {
+		return user;
+	}
+	public void setUser(UserVo user) {
+		this.user = user;
 	}
 }

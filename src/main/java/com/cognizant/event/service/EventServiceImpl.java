@@ -4,21 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cognizant.common.vo.StatusVo;
-import com.cognizant.common.vo.UserVo;
 import com.cognizant.enumeration.ActionType;
 import com.cognizant.enumeration.StatusType;
 import com.cognizant.event.bo.EventBo;
 import com.cognizant.event.repository.EventRepository;
 import com.cognizant.event.vo.EventRequestVo;
 import com.cognizant.event.vo.EventResponseVo;
+import com.cognizant.validators.ObjectValidator;
 
 @Service
 public class EventServiceImpl implements EventService {
@@ -27,31 +25,32 @@ public class EventServiceImpl implements EventService {
 
 	@Autowired
 	EventRepository repository;
-	
-	@Autowired
-	HttpServletRequest request;
 
 	public List<EventResponseVo> event(EventRequestVo requestVo) throws Exception {
 		List<EventResponseVo> response = new ArrayList<EventResponseVo>();
-		UserVo user = new UserVo();
-		user.setUserName(request.getHeader("username"));
-		user.setPassword(request.getHeader("password"));
 		StatusVo status = null;
 		EventResponseVo responseVo = new EventResponseVo(requestVo);
-		EventBo eventBo = new EventBo(requestVo,user);
-		if (requestVo.getAction().equals(ActionType.CREATE)) {
+		EventBo eventBo = new EventBo(requestVo);
+		if (requestVo.getAction().equals(ActionType.CREATE) || requestVo.getAction().equals(ActionType.UPDATE)) {
 			try {
-				eventBo = repository.save(eventBo);
-				status = new StatusVo(StatusType.SUCCESS, "Event has been successfully created");
+				if(ObjectValidator.isNull(requestVo.getId())) {
+					eventBo = repository.save(eventBo);
+				}else{
+					EventBo dbEventBo = repository.findById(requestVo.getId()).get();
+					dbEventBo.setEvent(eventBo);
+					eventBo = repository.save(dbEventBo);
+				}
+				status = new StatusVo(StatusType.SUCCESS, "Event "+requestVo.getAction().toString().toLowerCase()+" is successful");
 				responseVo.setId(eventBo.getId());
 			} catch (Exception e) {
-				LOGGER.error("Exception Occured while saving the event", e);
-				status = new StatusVo(StatusType.FAILURE, "Event has not been created - Exception Occured");
+				LOGGER.error("Exception Occured while "+requestVo.getAction().toString().toLowerCase()+"ing the event", e);
+				status = new StatusVo(StatusType.FAILURE, "Event "+requestVo.getAction().toString().toLowerCase()+" was not successful - Exception Occurred");
+				throw new Exception("Action Type Not Found");
 			}
 			responseVo.setStatus(status);
 			response.add(responseVo);
 		} else if (requestVo.getAction().equals(ActionType.READ)) {
-			if (requestVo.getId() != null) {
+			if (ObjectValidator.isNotNull(requestVo.getId())) {
 				eventBo = repository.findById(requestVo.getId()).get();
 				responseVo = new EventResponseVo(eventBo);
 				response.add(responseVo);
@@ -60,18 +59,8 @@ public class EventServiceImpl implements EventService {
 				response = eventBoList.stream().map(event -> new EventResponseVo(event)).collect(Collectors.toList());;
 			}
 
-		} else if (requestVo.getAction().equals(ActionType.UPDATE)) {
-			try {
-				eventBo = repository.save(eventBo);
-				status = new StatusVo(StatusType.SUCCESS, "Event has been successfully updated");
-			} catch (Exception e) {
-				LOGGER.error("Exception Occured while updating the event", e);
-				status = new StatusVo(StatusType.FAILURE, "Event has not been updated - Exception Occured");
-			}
-			responseVo.setStatus(status);
-			response.add(responseVo);
-		} else if (requestVo.getAction().equals(ActionType.DELETE)) {
-			if(requestVo.getId() != null) {
+		}  else if (requestVo.getAction().equals(ActionType.DELETE)) {
+			if(ObjectValidator.isNotNull(requestVo.getId())) {
 				eventBo = repository.findById(requestVo.getId()).get();
 				repository.delete(eventBo);
 				responseVo = new EventResponseVo(eventBo);
@@ -79,6 +68,7 @@ public class EventServiceImpl implements EventService {
 			}else {
 				LOGGER.error("Exception Occured while deleting the event as the Id was null");
 				status = new StatusVo(StatusType.FAILURE, "Event has not been deleted - Id field is null");
+				throw new Exception("Action Type Not Found");
 			}
 			responseVo.setStatus(status);
 			response.add(responseVo);

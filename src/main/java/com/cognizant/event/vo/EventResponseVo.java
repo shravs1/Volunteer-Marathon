@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import com.cognizant.common.vo.StatusVo;
-import com.cognizant.common.vo.UserVo;
 import com.cognizant.enumeration.ActionType;
 import com.cognizant.event.bo.EventBo;
 
