@@ -4,12 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cognizant.common.vo.StatusVo;
+import com.cognizant.common.vo.UserVo;
 import com.cognizant.enumeration.ActionType;
 import com.cognizant.enumeration.StatusType;
 import com.cognizant.event.bo.EventBo;
@@ -24,13 +27,18 @@ public class EventServiceImpl implements EventService {
 
 	@Autowired
 	EventRepository repository;
+	
+	@Autowired
+	HttpServletRequest request;
 
 	public List<EventResponseVo> event(EventRequestVo requestVo) throws Exception {
 		List<EventResponseVo> response = new ArrayList<EventResponseVo>();
+		UserVo user = new UserVo();
+		user.setUserName(request.getHeader("username"));
+		user.setPassword(request.getHeader("password"));
 		StatusVo status = null;
 		EventResponseVo responseVo = new EventResponseVo(requestVo);
-		EventBo eventBo = new EventBo(requestVo.getId(), requestVo.getName(), requestVo.getBaseLocation(),
-				requestVo.getDescription(), requestVo.getDate());
+		EventBo eventBo = new EventBo(requestVo,user);
 		if (requestVo.getAction().equals(ActionType.CREATE)) {
 			try {
 				eventBo = repository.save(eventBo);

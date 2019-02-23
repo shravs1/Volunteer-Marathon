@@ -1,8 +1,21 @@
-create table event(
-   Id INT NOT NULL AUTO_INCREMENT,
-   Name VARCHAR(80) NOT NULL,
-   Location VARCHAR(40) NOT NULL,
-   Description VARCHAR(120) NOT NULL,
-   Event_Date VARCHAR(40) NOT NULL,
-   PRIMARY KEY ( Id )
+create table event_t(
+   event_id INT NOT NULL AUTO_INCREMENT,
+   event_name VARCHAR(100) NOT NULL,
+   event_description VARCHAR(200) NOT NULL,
+   event_date DATE NOT NULL,
+   event_start_time TIME,
+   event_end_time TIME,
+   volunteers_required SMALLINT NOT NULL,
+   total_volunteering_hrs TINYINT,
+   total_transport_hrs TINYINT,
+   benificiary_name VARCHAR(50),
+   lives_impacted MEDIUMINT,
+   venue_address VARCHAR(200),
+   event_status VARCHAR(10),
+   poc_ids VARCHAR(40),
+   created_by VARCHAR(40) ,
+   created_date DATETIME ,
+   updated_by VARCHAR(40) NOT NULL,
+   updated_date DATETIME NOT NULL,
+   PRIMARY KEY ( event_id )
 );
