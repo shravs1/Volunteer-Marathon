@@ -1,4 +1,12 @@
 {
+	'url' : "http://localhost:8080/events",
+	'headers' : {
+	'username' : 'user',
+	'password' : 'user'
+	}
+}
+
+{
 	"name" : "Chennai Floods",
 	"description" : "Help the people in flood",
 	"date" : "2017-07-10",
