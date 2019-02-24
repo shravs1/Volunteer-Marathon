@@ -228,7 +228,7 @@ public class EventResponseVo {
 		this.venueAddress = event.getVenueAddress();
 		this.eventStatus = event.getStatus();
 		this.pocIds = event.getPocIds();
-		this.createdBy = event.getPocIds();
+		this.createdBy = event.getCreatedBy();
 		this.createdDate = event.getCreatedDate().toLocalDate();
 		this.updatedBy = event.getUpdatedBy();
 		this.updatedDate = event.getUpdatedDate().toLocalDate();

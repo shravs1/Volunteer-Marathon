@@ -1,11 +1,10 @@
-{
-	'url' : "http://localhost:8080/events",
-	'headers' : {
-	'username' : 'user',
-	'password' : 'user'
-	}
-}
-
+[{
+ "url" : "http://localhost:8080/api/events",
+ "headers" : {
+ "username" : "user",
+ "password" : "user"
+ }
+},
 {
 	"name" : "Chennai Floods",
 	"description" : "Help the people in flood",
@@ -21,8 +20,7 @@
 	"eventStatus" : "Active",
 	"pocIds" : "600119;600117",
 	"action" : "CREATE" 
-}
-
+},
 {
 	"id":1,
 	"name" : "OMR Floods",
@@ -39,14 +37,12 @@
 	"eventStatus" : "Active",
 	"pocIds" : "600119;600117",
 	"action" : "UPDATE" 
-}
-
+},
 {
 	"id":1,
 	"action" : "READ" 
-}
-
+},
 {
 	"id":5,
 	"action" : "DELETE" 
-}
+}]

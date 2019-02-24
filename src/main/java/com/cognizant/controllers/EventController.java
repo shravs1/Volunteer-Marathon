@@ -9,6 +9,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cognizant.common.vo.UserVo;
@@ -16,7 +17,8 @@ import com.cognizant.event.service.EventService;
 import com.cognizant.event.vo.EventRequestVo;
 import com.cognizant.event.vo.EventResponseVo;
 
-@RestController
+@RestController()
+@RequestMapping(path="/api")
 public class EventController {
 	 private static final Logger LOGGER = LogManager.getLogger(EventController.class);
 	 
@@ -26,7 +28,7 @@ public class EventController {
 	@Autowired
 	HttpServletRequest request;
 	 
-	@RequestMapping(consumes="application/json",path="/events")
+	@RequestMapping(consumes="application/json",path="/events",method=RequestMethod.POST)
     public List<EventResponseVo> events(@RequestBody EventRequestVo requestVo) throws Exception {
 		LOGGER.debug("Called VolunteeringController.getEvents() methods");
 		List<EventResponseVo> responseVo = null;

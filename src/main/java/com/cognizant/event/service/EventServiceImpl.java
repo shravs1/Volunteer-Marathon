@@ -46,11 +46,11 @@ public class EventServiceImpl implements EventService {
 				responseVo.setId(eventBo.getId());
 			} catch (Exception e) {
 				if("No value present".equals(e.getMessage())) {
-					throw new Exception("No value found for the given id "+responseVo.getId()+" in the database to "+requestVo.getAction().toString().toLowerCase());
+					LOGGER.error("Exception Occured while "+requestVo.getAction().toString().toLowerCase()+"ing the event", e);
+					status = new StatusVo(StatusType.FAILURE, "Event "+requestVo.getAction().toString().toLowerCase()+" was not successful - Exception Occurred");
 				}
 				LOGGER.error("Exception Occured while "+requestVo.getAction().toString().toLowerCase()+"ing the event", e);
 				status = new StatusVo(StatusType.FAILURE, "Event "+requestVo.getAction().toString().toLowerCase()+" was not successful - Exception Occurred");
-				throw new Exception("Exception Occured while "+requestVo.getAction().toString().toLowerCase()+"ing the event");
 			}
 			responseVo.setStatus(status);
 			response.add(responseVo);
@@ -73,7 +73,6 @@ public class EventServiceImpl implements EventService {
 			}else {
 				LOGGER.error("Exception Occured while deleting the event as the Id was null");
 				status = new StatusVo(StatusType.FAILURE, "Event has not been deleted - Id field is null");
-				throw new Exception("Action Type Not Found");
 			}
 			responseVo.setStatus(status);
 			response.add(responseVo);

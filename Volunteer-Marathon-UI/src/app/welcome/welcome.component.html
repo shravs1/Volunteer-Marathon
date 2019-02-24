@@ -1,18 +1,19 @@
-<div class="left-event-page"></div>
-<div *ngFor="let item of items" class='matcontainer'>
-<mat-card class="example-card" [routerLink]="[ '/eventinfo', item ]">
+<div class="left-event-page" ></div>
+<div *ngFor="let event of events" class='matcontainer'>
+<mat-card class="example-card" [routerLink]="[ '/eventinfo', event.id ]">
   <mat-card-header>
-    <mat-card-title>Blood Camp</mat-card-title>
-    <mat-card-subtitle>Apollo Blood Camp</mat-card-subtitle>
+    <mat-card-title>{{event.name}}</mat-card-title>
+    <mat-card-subtitle>{{event.description}}</mat-card-subtitle>
     <div class="flex-spacer"></div>
     <mat-card-actions>
       <button mat-button>Register</button>
     </mat-card-actions>
   </mat-card-header>
-  <img mat-card-image src="../../assets/images/Volunteer-Image.jpg" alt="Photo of a Shiba Inu">
+  <img mat-card-image src="../../assets/images/Volunteer-Image.jpg" alt="Photo about volunteering for the event">
   <mat-card-content>
     <p>
-    Donate Blood and save a million lives.
+    The event is about {{event.name | lowercase }}, which is held on {{event.date|date:'medium'}} at {{event.venueAddress | lowercase}} and open for registrations with
+    {{event.volunteersRequired}} Volunteers Required.
     </p>
   </mat-card-content>
 </mat-card>
