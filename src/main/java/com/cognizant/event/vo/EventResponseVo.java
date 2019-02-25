@@ -2,6 +2,7 @@ package com.cognizant.event.vo;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import com.cognizant.common.vo.StatusVo;
 import com.cognizant.enumeration.ActionType;
@@ -13,8 +14,8 @@ public class EventResponseVo {
 	private String name;
 	private String description;
 	private LocalDate date;
-	private LocalDateTime startTime;
-	private LocalDateTime endTime;
+	private LocalTime startTime;
+	private LocalTime endTime;
 	private Integer volunteersRequired;
 	private Integer totalVolunteeringHrs;
 	private Integer totalTransportHrs;
@@ -24,9 +25,9 @@ public class EventResponseVo {
 	private String eventStatus;
 	private String pocIds;
 	private String createdBy;
-	private LocalDate createdDate;
+	private LocalDateTime createdDate;
 	private String updatedBy;
-	private LocalDate updatedDate;
+	private LocalDateTime updatedDate;
 	private ActionType action;
 	private StatusVo status;
 
@@ -70,19 +71,19 @@ public class EventResponseVo {
 		this.date = date;
 	}
 
-	public LocalDateTime getStartTime() {
+	public LocalTime getStartTime() {
 		return startTime;
 	}
 
-	public void setStartTime(LocalDateTime startTime) {
+	public void setStartTime(LocalTime startTime) {
 		this.startTime = startTime;
 	}
 
-	public LocalDateTime getEndTime() {
+	public LocalTime getEndTime() {
 		return endTime;
 	}
 
-	public void setEndTime(LocalDateTime endTime) {
+	public void setEndTime(LocalTime endTime) {
 		this.endTime = endTime;
 	}
 
@@ -158,11 +159,11 @@ public class EventResponseVo {
 		this.createdBy = createdBy;
 	}
 
-	public LocalDate getCreatedDate() {
+	public LocalDateTime getCreatedDate() {
 		return createdDate;
 	}
 
-	public void setCreatedDate(LocalDate createdDate) {
+	public void setCreatedDate(LocalDateTime createdDate) {
 		this.createdDate = createdDate;
 	}
 
@@ -174,11 +175,11 @@ public class EventResponseVo {
 		this.updatedBy = updatedBy;
 	}
 
-	public LocalDate getUpdatedDate() {
+	public LocalDateTime getUpdatedDate() {
 		return updatedDate;
 	}
 
-	public void setUpdatedDate(LocalDate updatedDate) {
+	public void setUpdatedDate(LocalDateTime updatedDate) {
 		this.updatedDate = updatedDate;
 	}
 
@@ -229,8 +230,8 @@ public class EventResponseVo {
 		this.eventStatus = event.getStatus();
 		this.pocIds = event.getPocIds();
 		this.createdBy = event.getCreatedBy();
-		this.createdDate = event.getCreatedDate().toLocalDate();
+		this.createdDate = event.getCreatedDate();
 		this.updatedBy = event.getUpdatedBy();
-		this.updatedDate = event.getUpdatedDate().toLocalDate();
+		this.updatedDate = event.getUpdatedDate();
 	}
 }

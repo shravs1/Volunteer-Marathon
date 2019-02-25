@@ -4,6 +4,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZoneId;
 
 import javax.persistence.Column;
@@ -42,10 +43,10 @@ public class EventBo {
 	private LocalDate date;
 
 	@Column(name = "event_start_time")
-	private LocalDateTime startTime;
+	private LocalTime startTime;
 
 	@Column(name = "event_end_time")
-	private LocalDateTime endTime;
+	private LocalTime endTime;
 
 	@NonNull
 	@Column(name = "volunteers_required")
@@ -91,7 +92,7 @@ public class EventBo {
 
 
 
-	public EventBo(String name, String description, LocalDate date, LocalDateTime startTime, LocalDateTime endTime,
+	public EventBo(String name, String description, LocalDate date, LocalTime startTime, LocalTime endTime,
 			Integer volunteersRequired, Integer totalVolunteeringHrs, Integer totalTransportHrs, String benificiaryName,
 			Short livesImpacted, String venueAddress, String status, String pocIds, String createdBy, LocalDateTime createdDate,
 			String updatedBy, LocalDateTime updatedDate) {
@@ -146,16 +147,16 @@ public class EventBo {
 	public void setDate(LocalDate date) {
 		this.date = date;
 	}
-	public LocalDateTime getStartTime() {
+	public LocalTime getStartTime() {
 		return startTime;
 	}
-	public void setStartTime(LocalDateTime startTime) {
+	public void setStartTime(LocalTime startTime) {
 		this.startTime = startTime;
 	}
-	public LocalDateTime getEndTime() {
+	public LocalTime getEndTime() {
 		return endTime;
 	}
-	public void setEndTime(LocalDateTime endTime) {
+	public void setEndTime(LocalTime endTime) {
 		this.endTime = endTime;
 	}
 	public Integer getVolunteersRequired() {
