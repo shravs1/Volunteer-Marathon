@@ -1,0 +1,16 @@
+{
+    "id" :4,
+	"name" : "Blood Camp",
+	"description" : "Give boold save lives",
+	"date" : "2017-08-10",
+	"startTime" : "8:00:00",
+	"endTime" : "12:00:00",
+	"volunteersRequired" : 20,
+	"totalVolunteeringHrs" : 4,
+	"totalTransportHrs" : 1,
+	"benificiaryName" : "Apollo Hospitals",
+	"livesImpacted" : 20,
+	"venueAddress" : "Cognizant Shollinganallur ELCOT Chennai 600119",
+	"eventStatus" : "Active",
+	"pocIds" : "600119;600117"
+}

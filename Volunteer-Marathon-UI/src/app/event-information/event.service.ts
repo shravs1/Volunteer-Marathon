@@ -1,19 +1,19 @@
 import { Injectable } from '@angular/core';
-import { IEvent } from './event';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { tap,catchError } from 'rxjs/operators';
+import { IEvent } from '../welcome/event';
 
 @Injectable({
   providedIn: 'root'
 })
-export class WelcomeService {
+export class EventService {
 
   constructor(private http: HttpClient) { }
 
-  private eventUrl: string = "static/events.json";
-  getEvents(): Observable<IEvent[]> {
-    return this.http.get<IEvent[]>(this.eventUrl/*,{"action":  "READ"}*/).pipe(tap(data => console.log('All: ' + JSON.stringify(data))),
+  private eventUrl: string = "static/event.json";
+  getEvent(id:number): Observable<IEvent> {
+    return this.http.get<IEvent>(this.eventUrl/*,{"id":id,"action":  "READ"}*/).pipe(tap(data => console.log('getEvent Response: ' + JSON.stringify(data))),
       catchError(this.handleError)
     );
   }

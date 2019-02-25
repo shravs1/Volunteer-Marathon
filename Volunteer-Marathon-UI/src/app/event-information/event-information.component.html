@@ -1,1 +1,12 @@
-<p>eventinfo works !</p>
+<section id="event-info-title">
+    <div class="container">
+        <h1 class="header">{{pageTitle}}</h1>
+    </div>
+</section>
+
+<section *ngIf="event">
+    <div class="container">
+        <h1 class="header">{{event.name}}</h1>
+        
+    </div>
+</section>
