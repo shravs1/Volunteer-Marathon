@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { MatMenuModule, MatButtonModule, MatIconModule, MatCardModule } from '@angular/material';
+import { MatMenuModule, MatButtonModule, MatIconModule, MatCardModule, MatTableModule } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -25,7 +25,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatIconModule,
     MatMenuModule,
     MatCardModule,
-    HttpClientModule
+    HttpClientModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -2,7 +2,7 @@ export interface IEvent{
     id:number;
     name:string;
     description:string;
-    releaseDate:Date;
+    date:Date;
     startTime:Date;
     endTime:Date;
     volunteersRequired:number;
